@@ -1,10 +1,22 @@
 package model;
 
-public class Notes {
+import java.util.Date;
+
+public class Note {
+
+    private int id;
     private String topic;
-    private String dateOfCreate;
+    private Date dateOfCreate;
     private String email;
     private String message;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTopic() {
         return topic;
@@ -14,11 +26,11 @@ public class Notes {
         this.topic = topic;
     }
 
-    public String getDateOfCreate() {
+    public Date getDateOfCreate() {
         return dateOfCreate;
     }
 
-    public void setDateOfCreate(String dateOfCreate) {
+    public void setDateOfCreate(Date dateOfCreate) {
         this.dateOfCreate = dateOfCreate;
     }
 
@@ -38,7 +50,8 @@ public class Notes {
         this.message = message;
     }
 
-    public Notes(String topic, String dateOfCreate, String email, String message) {
+    public Note(int id, String topic, Date dateOfCreate, String email, String message) {
+        this.id = id;
         this.topic = topic;
         this.dateOfCreate = dateOfCreate;
         this.email = email;
@@ -48,7 +61,8 @@ public class Notes {
     @Override
     public String toString() {
         return "Notes{" +
-                "topic='" + topic + '\'' +
+                "id=" + id +
+                ", topic='" + topic + '\'' +
                 ", dateOfCreate='" + dateOfCreate + '\'' +
                 ", email='" + email + '\'' +
                 ", message='" + message + '\'' +
