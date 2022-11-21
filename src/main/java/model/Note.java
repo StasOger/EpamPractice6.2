@@ -1,12 +1,13 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Note {
 
     private int id;
     private String topic;
-    private Date dateOfCreate;
+    private LocalDate dateOfCreate;
     private String email;
     private String message;
 
@@ -26,11 +27,9 @@ public class Note {
         this.topic = topic;
     }
 
-    public Date getDateOfCreate() {
-        return dateOfCreate;
-    }
+    public LocalDate getDateOfCreate() {return dateOfCreate;}
 
-    public void setDateOfCreate(Date dateOfCreate) {
+    public void setDateOfCreate(LocalDate dateOfCreate) {
         this.dateOfCreate = dateOfCreate;
     }
 
@@ -50,7 +49,7 @@ public class Note {
         this.message = message;
     }
 
-    public Note(int id, String topic, Date dateOfCreate, String email, String message) {
+    public Note(int id, String topic, LocalDate dateOfCreate, String email, String message) {
         this.id = id;
         this.topic = topic;
         this.dateOfCreate = dateOfCreate;
