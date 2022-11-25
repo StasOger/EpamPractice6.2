@@ -171,6 +171,7 @@ public class NotesService {
                 "- Enter \"1\" for find note by id;\n" +
                 "- Enter \"2\" for find note by date;\n" +
                 "- Enter \"3\" for find note by topic;\n" +
+                "- Enter \"4\" for find by occurrence of words; \n" +
                 "for end enter \"exit\"\n";
         System.out.println(start);
         while (!choice.equalsIgnoreCase("exit")) {
@@ -185,6 +186,9 @@ public class NotesService {
                     break;
                 case "3":
                     findBookByTopic();
+                    break;
+                case "4":
+                    findByOccurrenceOfWords();
                     break;
                 case "exit":
                     System.out.println("\nOver.");
@@ -209,22 +213,21 @@ public class NotesService {
     }
 
     private void findNoteByDate() throws ParseException {
-//        System.out.println("Enter date (year-mounth-day): ");
-//        Scanner in1 = new Scanner(System.in);
-//        String noteDate = in1.nextLine();
-//
-//        SimpleDateFormat format = new SimpleDateFormat();
-//        format.applyPattern("yyyy-MM-dd");
-//        Date docDate= format.parse(noteDate);
-//
-//        List<Note> noteList = notesRepository.selectAllNotes();
-//        for (Note n: noteList){
-//            int result = docDate.compareTo(n.getDateOfCreate());
-//            if (result == 0){
-//                System.out.println(n);
-//            }
-//        }
+        System.out.println("Enter date (year-mounth-day): ");
+        Scanner in1 = new Scanner(System.in);
+        String noteDate = in1.nextLine();
 
+        SimpleDateFormat format = new SimpleDateFormat();
+        format.applyPattern("yyyy-MM-dd");
+        LocalDate docDate= LocalDate.parse(noteDate);
+
+        List<Note> noteList = notesRepository.selectAllNotes();
+        for (Note n: noteList){
+            int result = docDate.compareTo(n.getDateOfCreate());
+            if (result == 0){
+                System.out.println(n);
+            }
+        }
     }
 
     private void findNoteById() {
@@ -234,6 +237,21 @@ public class NotesService {
         List<Note> noteList = notesRepository.selectAllNotes();
         for (Note n: noteList){
             if (noteId == n.getId()){
+                System.out.println(n);
+            }
+        }
+    }
+
+    private void findByOccurrenceOfWords() {
+        System.out.println("Enter word: ");
+        Scanner in1 = new Scanner(System.in);
+        String str = in1.nextLine();
+
+        List<Note> noteList = notesRepository.selectAllNotes();
+        for (Note n: noteList){
+            String topic = n.getTopic();
+            String message = n.getMessage();
+            if (topic.contains(str) || message.contains(str)){
                 System.out.println(n);
             }
         }
