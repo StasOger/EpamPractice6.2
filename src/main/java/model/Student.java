@@ -96,5 +96,19 @@ public class Student {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", faculty='" + faculty + '\'' +
+                ", course=" + course +
+                ", yearOfAdmission=" + yearOfAdmission +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
 

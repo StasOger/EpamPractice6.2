@@ -54,7 +54,10 @@ public class archiveService {
                     addStudent();
                     break;
                 case "3":
-                    editStudent();
+                    System.out.println("Enter student id");
+                    Scanner in1 = new Scanner(System.in);
+                    int id = in1.nextInt();
+                    editStudent(id);
                     break;
                 case "4":
                     deleteStudent();
@@ -91,8 +94,115 @@ public class archiveService {
         System.out.println("Student deleted!");
     }
 
-    private void editStudent() {
+    private void editStudent(int id) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String choice = "";
+        String start = "\n" +
+                "- Enter \"1\" for edit firstname;\n" +
+                "- Enter \"2\" for edit lastName;\n" +
+                "- Enter \"3\" for edit age;\n" +
+                "- Enter \"4\" for edit faculty;\n" +
+                "- Enter \"5\" for edit course;\n" +
+                "- Enter \"6\" for edit yearOfAdmission;\n" +
+                "- Enter \"7\" for edit login;\n" +
+                "- Enter \"8\" for edit password;\n" +
+                "for end enter \"exit\"\n";
+        System.out.println(start);
+        while (!choice.equalsIgnoreCase("exit")) {
+            System.out.print("Enter command: ");
+            choice = reader.readLine();
+            switch (choice) {
+                case "1":
+                    System.out.println("Enter new firstname: ");
+                    Scanner in1 = new Scanner(System.in);
+                    String newFirstname = in1.nextLine();
+                    String parametr = "firstname";
+                    changeParametr(parametr, newFirstname, id);
+                    break;
+                case "2":
+                    System.out.println("Enter new lastName: ");
+                    Scanner in2 = new Scanner(System.in);
+                    String newLastName = in2.nextLine();
+                    parametr = "lastname";
+                    changeParametr(parametr, newLastName, id);
+                    break;
+                case "3":
+                    System.out.println("Enter new age: ");
+                    Scanner in3 = new Scanner(System.in);
+                    String newAge = in3.nextLine();
+                    parametr = "age";
+                    changeParametr(parametr, newAge, id);
+                    break;
+                case "4":
+                    System.out.println("Enter new faculty: ");
+                    Scanner in4 = new Scanner(System.in);
+                    String newFaculty = in4.nextLine();
+                    parametr = "faculty";
+                    changeParametr(parametr, newFaculty, id);
+                    break;
+                case "5":
+                    System.out.println("Enter new course: ");
+                    Scanner in5 = new Scanner(System.in);
+                    String newCourse = in5.nextLine();
+                    parametr = "course";
+                    changeParametr(parametr, newCourse, id);
+                    break;
+                case "6":
+                    System.out.println("Enter new yearOfAdmission: ");
+                    Scanner in6 = new Scanner(System.in);
+                    String newYearOfAdmission = in6.nextLine();
+                    parametr = "yearOfAdmission";
+                    changeParametr(parametr, newYearOfAdmission, id);
+                    break;
+                case "7":
+                    System.out.println("Enter new login: ");
+                    Scanner in7 = new Scanner(System.in);
+                    String newLogin = in7.nextLine();
+                    parametr = "login";
+                    changeParametr(parametr, newLogin, id);
+                    break;
+                case "8":
+                    System.out.println("Enter new password: ");
+                    Scanner in8 = new Scanner(System.in);
+                    String newPassword = in8.nextLine();
+                    parametr = "password";
+                    changeParametr(parametr, newPassword, id);
+                    break;
+                case "exit":
+                    System.out.println("\nOver.");
+                    break;
+                default:
+                    System.out.println("Incorrect. Please repeat one more time.\n");
+            }
+        }
+    }
 
+    private void changeParametr(String parametr, String newParametr, int id) {
+        List<Student> studentList = userRepository.selectAllStudents();
+        for (Student b: studentList){
+            if (b.getId() == id){
+                if (parametr == "firstname"){
+                    b.setFirstName(newParametr);
+                } else if (parametr == "lastName"){
+                    b.setLastName(newParametr);
+                } else if (parametr == "age"){
+                    b.setLastName(String.valueOf(newParametr));
+                } else if (parametr == "faculty"){
+                    b.setLastName(newParametr);
+                } else if (parametr == "course"){
+                    b.setLastName(String.valueOf(newParametr));
+                } else if (parametr == "yearOfAdmission"){
+                    b.setLastName(String.valueOf(newParametr));
+                } else if (parametr == "login"){
+                    b.setLastName(newParametr);
+                } else if (parametr == "password"){
+                    b.setLastName(newParametr);
+                }
+            }
+        }
+        for (Student b: studentList){
+            System.out.println(b);
+        }
     }
 
     private void addStudent() throws FileNotFoundException {

@@ -1,7 +1,6 @@
 package repository;
 
 import model.Student;
-import role.User;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
